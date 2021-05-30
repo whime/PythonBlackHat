@@ -10,6 +10,7 @@
 **content_bruter**
 
 using Dictionary all.txt to perform dirBruter.
+
 !["dirBruter"](../imgs/dirBruter.png)
 
 **joomla_kill.py**
