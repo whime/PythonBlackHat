@@ -25,7 +25,6 @@ class camera_scanner:
             print(e)
         else:
             packet = Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(pdst=self.target_net)
-            # TODO(需要一个获取当前使用的网卡的方法作为全局变量）
             # TODO(有个缺陷，对于使用随机地址的设备来说，无法获取其真实mac地址）
             ans, _ = srp(packet, iface="Realtek PCIe GBE Family Controller", timeout=self.timeout)
             print("there is/are %d machine(s) in %s"%(len(ans),str(network)))
